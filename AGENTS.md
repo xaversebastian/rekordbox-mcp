@@ -44,8 +44,9 @@ must stay separate from live library reads and writes.
   confirmed closed.
 - Do not read `.env*`, token stores, database files, backups, exports,
   screenshots, media files, or credentials.
-- Do not run install, publish, Docker, package-release, or external sync
-  commands without explicit approval.
+- Minimal justified repo dependency changes are allowed with manifest,
+  lockfile and mocked checks. Client installation, Docker/runtime changes,
+  publishing, package releases and external sync require explicit approval.
 - Keep changes small and targeted. Preserve the distinction between product
   docs in `README.md`, Claude-specific guidance in `CLAUDE.md`, and
   maintenance rules in this file.
@@ -74,7 +75,7 @@ For shell edits, run `bash -n` on changed shell scripts.
 
 ## Handoff Updates
 
-For substantial work, append to `AGENT_HANDOFF.md` with:
+Append only for durable cross-session state, open gates, or a real handoff:
 
 - Date, tool, one-line goal
 - Changed paths
