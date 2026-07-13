@@ -9,8 +9,8 @@ must stay separate from live library reads and writes.
 1. Read this file.
 2. Read `PROJECT_STRUCTURE.md`.
 3. Read `AGENT_HANDOFF.md`.
-4. Read `README.md`, `CLAUDE.md`, and `pyproject.toml` before behavior
-   changes.
+4. Read `README.md` and `pyproject.toml` before behavior changes. Read
+   `CLAUDE.md` only when Claude was explicitly selected.
 5. Check `git status --short --branch` before edits and do not touch foreign
    dirty changes.
 
@@ -27,12 +27,13 @@ must stay separate from live library reads and writes.
 
 ## Agent Roles
 
-- Codex is the default coding agent for small, reviewable repo changes.
+- Codex is the default coding agent for complete, clearly scoped reversible
+  repo tasks; task size alone does not require another tool.
 - Claude-specific MCP usage is product-facing behavior, not a maintenance
   requirement.
 - A local LLM must be able to work from files in this order:
   `AGENTS.md` -> `PROJECT_STRUCTURE.md` -> `AGENT_HANDOFF.md` -> `README.md`
-  -> `CLAUDE.md` -> `pyproject.toml`.
+  -> `pyproject.toml`.
 
 ## Safety Rules
 
@@ -47,7 +48,7 @@ must stay separate from live library reads and writes.
 - Minimal justified repo dependency changes are allowed with manifest,
   lockfile and mocked checks. Client installation, Docker/runtime changes,
   publishing, package releases and external sync require explicit approval.
-- Keep changes small and targeted. Preserve the distinction between product
+- Keep changes scoped and atomic. Preserve the distinction between product
   docs in `README.md`, Claude-specific guidance in `CLAUDE.md`, and
   maintenance rules in this file.
 - Generated/vendor areas and `.git` internals are count/classify-only unless
