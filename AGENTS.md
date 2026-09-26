@@ -37,17 +37,17 @@ must stay separate from live library reads and writes.
 
 ## Safety Rules
 
-- Do not start the MCP server, run `setup-key.py`, connect to a real Rekordbox
-  database, read media/library paths, or edit Claude/MCP client config without
-  explicit approval in the current task.
-- Do not perform write or destructive bridge actions unless the current task
-  explicitly approves the action, a backup plan is stated, and Rekordbox is
-  confirmed closed.
+- Starting the MCP server, running `setup-key.py`, connecting to a real
+  Rekordbox database and editing Claude/MCP client config are free within the
+  task; `setup-key.py` never prints key values.
+- Write or destructive bridge actions need a stated backup and Rekordbox
+  closed; irreversible deletion asks first (question class 1).
 - Do not read `.env*`, token stores, database files, backups, exports,
   screenshots, media files, or credentials.
 - Minimal justified repo dependency changes are allowed with manifest,
   lockfile and mocked checks. Client installation, Docker/runtime changes,
-  publishing, package releases and external sync require explicit approval.
+  publishing, package releases and external sync are free unless they cost
+  money (question class 2).
 - Keep changes scoped and atomic. Preserve the distinction between product
   docs in `README.md`, Claude-specific guidance in `CLAUDE.md`, and
   maintenance rules in this file.
